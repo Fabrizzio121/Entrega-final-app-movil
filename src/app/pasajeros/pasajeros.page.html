@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/movilizacion"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Pasajeros</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list *ngIf="pasajeros.length > 0; else noPasajeros">
+    <ion-item *ngFor="let pasajero of pasajeros">
+      {{ pasajero }} se ha unido a tu viaje.
+    </ion-item>
+  </ion-list>
+
+  <ng-template #noPasajeros>
+    <ion-item>
+      No hay pasajeros en este viaje.
+    </ion-item>
+  </ng-template>
+  
+  <ion-item *ngIf="pasajeros.length >= 4">
+    <ion-label color="danger">El viaje ya está completo.</ion-label>
+  </ion-item>
+</ion-content>

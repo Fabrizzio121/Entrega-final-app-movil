@@ -1,0 +1,69 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/opciones"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Ver Viajes</ion-title>
+    <!-- Logo en la parte superior -->
+    <ion-buttons slot="end">
+      <ion-img src="assets/logotellevo.png" alt="Logo" style="height: 40px; width: auto;"></ion-img>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-list>
+    <ion-item *ngFor="let viaje of viajes" (click)="seleccionarViaje(viaje)">
+      <ion-label>
+        <h2>{{ viaje.nombre }}</h2>
+        <p>Carrera: {{ viaje.carrera }}</p>
+        <p>Destino: {{ viaje.destino }}</p>
+        <p>Precio: ${{ viaje.precio }}</p> 
+        <p *ngIf="viaje.unidos.length > 0">Unido por: {{ viaje.unidos.join(', ') }}</p>
+        <p *ngIf="viaje.unidos.length >= 4" style="color: red;">Máximo de pasajeros alcanzado.</p>
+        
+        
+        <div *ngIf="viaje.comuna">
+          <img 
+            [src]="'assets/' + viaje.comuna + '.png'" 
+            alt="Mapa del viaje" 
+            style="width: 100%; border-radius: 10px; cursor: pointer;"
+            (click)="abrirImagenModal(viaje.comuna)">
+        </div>
+      </ion-label>
+    </ion-item>
+
+    <ion-item *ngIf="viajes.length === 0">
+      <ion-label>No hay viajes disponibles.</ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-button 
+    expand="full" 
+    (click)="unirseAlViaje()" 
+    [disabled]="!viajeSeleccionado || viajeSeleccionado.unidos.length >= 4"
+    style="--background: #FFD700;">
+    Unirme al Viaje
+  </ion-button>
+
+  <div *ngIf="mensajeUnido" style="margin-top: 16px; color: rgb(42, 151, 42);">
+    {{ mensajeUnido }}
+  </div>
+</ion-content>
+
+
+<ion-modal [isOpen]="isModalOpen">
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-button (click)="cerrarModal()">Cerrar</ion-button>
+        </ion-buttons>
+        <ion-title>Imagen del Viaje</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <img [src]="'assets/' + comunaSeleccionada + '.png'" alt="Mapa del viaje" style="width: 100%; height: auto;">
+    </ion-content>
+  </ng-template>
+</ion-modal>

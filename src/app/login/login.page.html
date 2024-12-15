@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <!-- Botón de retroceso -->
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/opciones"></ion-back-button> 
+    </ion-buttons>
+    <ion-title>Inicio de Sesión</ion-title>
+    <!-- Logo en la parte superior -->
+    <ion-buttons slot="end">
+      <ion-img src="assets/logotellevo.png" alt="Logo" style="height: 40px; width: auto;"></ion-img>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label position="floating">Nombre</ion-label>
+    <ion-input [(ngModel)]="nombre" type="text"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Contraseña</ion-label>
+    <ion-input [(ngModel)]="password" type="password"></ion-input>
+  </ion-item>
+  
+  
+  <ion-button expand="block" (click)="login()" style="--background: #FFD700;">Iniciar Sesión</ion-button>
+  
+  
+  <ion-button expand="block" fill="outline" (click)="goToRegister()" style="--border-color: #FFD700; color: #FFD700;">Crear Cuenta</ion-button>
+  
+  
+  <ion-button expand="block" fill="outline" (click)="goToForgotPassword()" style="--border-color: #FFD700; color: #FFD700;">Olvidé mi Contraseña</ion-button>
+</ion-content>

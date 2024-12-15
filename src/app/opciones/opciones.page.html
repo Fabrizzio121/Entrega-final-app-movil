@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Opciones</ion-title>
+    <!-- Logo en la parte superior -->
+    <ion-buttons slot="end">
+      <ion-img src="assets/logotellevo.png" alt="Logo" style="height: 40px; width: auto;"></ion-img>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <h2>Bienvenido, {{ nombreUsuario }}</h2>
+  
+  
+  <ion-button expand="block" (click)="goToMovilizacion()" style="--background: #FFD700;">Ir a Movilización</ion-button>
+  <ion-button expand="block" (click)="goToVerViajes()" style="--background: #FFD700;">Ver Viajes</ion-button>
+  
+  
+  <ion-button expand="block" color="danger" (click)="logout()">Salir</ion-button>
+</ion-content>

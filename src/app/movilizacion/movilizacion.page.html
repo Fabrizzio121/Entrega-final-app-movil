@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/opciones"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Movilización</ion-title>
+    <ion-buttons slot="end">
+      <ion-img src="assets/logotellevo.png" alt="Logo" style="height: 40px; width: auto;"></ion-img>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label position="floating">Nombre</ion-label>
+    <ion-input [(ngModel)]="nombre" type="text"></ion-input>
+  </ion-item>
+  
+  <ion-item>
+    <ion-label position="floating">Carrera</ion-label>
+    <ion-input [(ngModel)]="carrera" type="text"></ion-input>
+  </ion-item>
+  
+  <ion-item>
+    <ion-label position="floating">Destino</ion-label>
+    <ion-input [(ngModel)]="destino" type="text"></ion-input>
+  </ion-item>
+
+  <!-- Nueva opción para seleccionar comuna -->
+  <ion-item>
+    <ion-label>Comuna</ion-label>
+    <ion-select [(ngModel)]="comuna" placeholder="Selecciona una comuna">
+      <ion-select-option value="laflorida">La Florida</ion-select-option>
+      <ion-select-option value="puentealto">Puente Alto</ion-select-option>
+      <ion-select-option value="nunoa">Ñuñoa</ion-select-option>
+      <ion-select-option value="providencia">Providencia</ion-select-option>
+      <ion-select-option value="macul">Macul</ion-select-option>
+      <ion-select-option value="sanjoaquin">San Joaquín</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Precio</ion-label>
+    <ion-input [(ngModel)]="precio" type="number"></ion-input>
+  </ion-item>
+
+  <ion-button expand="full" (click)="agregarViaje()" color="primary">Crear Viaje</ion-button>
+  
+  <ion-list>
+    <ion-item *ngFor="let viaje of viajes">
+      <ion-label>{{ viaje.nombre }} - {{ viaje.destino }}</ion-label>
+      <ion-button fill="outline" (click)="verPasajeros(viaje)">Ver Pasajeros</ion-button>
+    </ion-item>
+  </ion-list>
+</ion-content>
